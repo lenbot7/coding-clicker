@@ -35,10 +35,7 @@
   justify-content: space-between;
 }
 
-.column {
-  flex: 1;
-  padding: 10px;
-}
+/* Removed column styles as they are no longer needed */
 
 footer {
   text-align: center;
