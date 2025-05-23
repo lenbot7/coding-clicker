@@ -6,6 +6,9 @@ var count = 200,
   defaults = {
     origin: { y: 0.7 },
   };
+const button = document.getElementById('gptlogo');
+const interval = 100; // milliseconds between clicks
+const duration = 30 * 1000; // 30 seconds in milliseconds
 
 function fire(particleRatio, opts) {
   confetti(
@@ -79,9 +82,8 @@ function button2Pressed(){
 function autoclicker(){
   if (corehours>=10){
     corehours -= 10
-    const button = document.getElementById('gptlogo');
-    const interval = 100; // milliseconds between clicks
-    const duration = 30 * 1000; // 30 seconds in milliseconds
+    document.getElementById("cash").innerHTML = corehours;
+    
 
     const clickInterval = setInterval(() => {
       button.click();
