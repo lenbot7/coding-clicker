@@ -79,11 +79,13 @@ function button2Pressed(){
   document.getElementById("total").innerHTML = code;	
   document.getElementById("cash").innerHTML = corehours;	
 }
+let autoclickerActive = false; // Prevent multiple autoclickers
+
 function autoclicker(){
-  if (corehours>=0){
-    corehours -= 0
+  if (corehours >= 1 && !autoclickerActive) {
+    corehours -= 1;
     document.getElementById("cash").innerHTML = corehours;
-    
+    autoclickerActive = true;
 
     const clickInterval = setInterval(() => {
       button.click();
@@ -91,7 +93,9 @@ function autoclicker(){
 
     setTimeout(() => {
       clearInterval(clickInterval);
+      autoclickerActive = false;
     }, duration);
-
+  } else if (corehours < 1) {
+    alert("You don't have enough corehours to activate the autoclicker");
   }
 }
