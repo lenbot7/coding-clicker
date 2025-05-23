@@ -76,3 +76,20 @@ function button2Pressed(){
   document.getElementById("total").innerHTML = code;	
   document.getElementById("cash").innerHTML = corehours;	
 }
+function autoclicker(){
+  if (corehours>=10){
+    corehours -= 10
+    const button = document.getElementById('gptlogo');
+    const interval = 100; // milliseconds between clicks
+    const duration = 30 * 1000; // 30 seconds in milliseconds
+
+    const clickInterval = setInterval(() => {
+      button.click();
+    }, interval);
+
+    setTimeout(() => {
+      clearInterval(clickInterval);
+    }, duration);
+
+  }
+}
