@@ -45,8 +45,8 @@ function buttonPressed() {
   window.clicksSinceConfetti++;
 
   if (window.clicksSinceConfetti >= window.confettiThreshold && code != 0) {
-    // Limit count to 150 max
-    count = Math.min(window.clicksSinceConfetti, 150);
+    // Use the current confetti threshold as the particle count, capped at 150
+    count = Math.min(window.confettiThreshold, 150);
     fire(0.25, {
       spread: 26,
       startVelocity: 55,
