@@ -103,8 +103,7 @@ function autoclicker(){
 
     setTimeout(() => {
       clearInterval(clickInterval);
-    }, duration);
-    autoclickerActive = false;
+      autoclickerActive = false;
       document.getElementById("auto").disabled = false; // Re-enable the button
       document.getElementById("auto").innerHTML = "Copilot Subscription";
       document.getElementById("auto").style.backgroundColor = ""; // Reset button color
@@ -114,6 +113,7 @@ function autoclicker(){
       document.getElementById("auto").style.transition = ""; // Reset transition effect
       document.getElementById("auto").style.boxShadow = ""; // Reset shadow effect
       document.getElementById("auto").style.fontSize = ""; // Reset font size
+    }, duration);
   } else if (corehours < 1) {
     alert("You don't have enough corehours to activate the autoclicker");
   }
