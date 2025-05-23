@@ -34,39 +34,45 @@ function spin(){
  
 
 function buttonPressed() { 
+  code = code + createdCode; spin(); spin();
+  document.getElementById("total").innerHTML = code;
 
-code=code+createdCode; spin();spin()
+  // Track how many clicks since last confetti
+  if (typeof window.clicksSinceConfetti === 'undefined') {
+    window.clicksSinceConfetti = 0;
+    window.confettiThreshold = 10;
+  }
+  window.clicksSinceConfetti++;
 
-             document.getElementById("total").innerHTML = code;	 
-if (code%10==0&code!=0) {
-  count = code
-  fire(0.25, {
-  spread: 26,
-  startVelocity: 55,
-});
-
-fire(0.2, {
-  spread: 60,
-});
-
-fire(0.35, {
-  spread: 100,
-  decay: 0.91,
-  scalar: 0.8,
-});
-
-fire(0.1, {
-  spread: 120,
-  startVelocity: 25,
-  decay: 0.92,
-  scalar: 1.2,
-});
-
-fire(0.1, {
-  spread: 120,
-  startVelocity: 45,
-});
-}
+  if (window.clicksSinceConfetti >= window.confettiThreshold && code != 0) {
+    // Limit count to 150 max
+    count = Math.min(window.clicksSinceConfetti, 150);
+    fire(0.25, {
+      spread: 26,
+      startVelocity: 55,
+    });
+    fire(0.2, {
+      spread: 60,
+    });
+    fire(0.35, {
+      spread: 100,
+      decay: 0.91,
+      scalar: 0.8,
+    });
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 25,
+      decay: 0.92,
+      scalar: 1.2,
+    });
+    fire(0.1, {
+      spread: 120,
+      startVelocity: 45,
+    });
+    // Increase threshold for next confetti, but cap at 150
+    window.confettiThreshold = Math.min(window.confettiThreshold + 10, 150);
+    window.clicksSinceConfetti = 0;
+  }
 } 
 function button2Pressed(){
   if (code>=10){
