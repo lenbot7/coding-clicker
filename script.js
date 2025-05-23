@@ -133,3 +133,41 @@ function autoclicker(){
     alert("You don't have enough corehours to activate the autoclicker");
   }
 }
+
+// --- Local Storage Helpers ---
+function saveGameState() {
+  localStorage.setItem('code', code);
+  localStorage.setItem('corehours', corehours);
+  localStorage.setItem('createdCode', createdCode);
+  localStorage.setItem('count', count);
+  localStorage.setItem('lastAngle', lastAngle);
+  localStorage.setItem('clicksSinceConfetti', window.clicksSinceConfetti || 0);
+  localStorage.setItem('confettiThreshold', window.confettiThreshold || 10);
+}
+
+function loadGameState() {
+  if (localStorage.getItem('code') !== null) code = parseInt(localStorage.getItem('code'));
+  if (localStorage.getItem('corehours') !== null) corehours = parseInt(localStorage.getItem('corehours'));
+  if (localStorage.getItem('createdCode') !== null) createdCode = parseInt(localStorage.getItem('createdCode'));
+  if (localStorage.getItem('count') !== null) count = parseInt(localStorage.getItem('count'));
+  if (localStorage.getItem('lastAngle') !== null) lastAngle = parseInt(localStorage.getItem('lastAngle'));
+  if (localStorage.getItem('clicksSinceConfetti') !== null) window.clicksSinceConfetti = parseInt(localStorage.getItem('clicksSinceConfetti'));
+  if (localStorage.getItem('confettiThreshold') !== null) window.confettiThreshold = parseInt(localStorage.getItem('confettiThreshold'));
+}
+
+function clearGameState() {
+  localStorage.clear();
+  location.reload();
+}
+
+// --- Auto-save on change ---
+setInterval(saveGameState, 1000); // Save every second
+
+// --- Load on start ---
+window.addEventListener('DOMContentLoaded', function() {
+  loadGameState();
+  document.getElementById("total").innerHTML = code;
+  document.getElementById("cash").innerHTML = corehours;
+  if (typeof window.clicksSinceConfetti === 'undefined') window.clicksSinceConfetti = 0;
+  if (typeof window.confettiThreshold === 'undefined') window.confettiThreshold = 10;
+});
