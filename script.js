@@ -80,8 +80,8 @@ function button2Pressed(){
   document.getElementById("cash").innerHTML = corehours;	
 }
 function autoclicker(){
-  if (corehours>=10){
-    corehours -= 10
+  if (corehours>=0){
+    corehours -= 0
     document.getElementById("cash").innerHTML = corehours;
     
 
