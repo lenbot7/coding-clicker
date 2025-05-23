@@ -86,6 +86,16 @@ function autoclicker(){
     corehours -= 1;
     document.getElementById("cash").innerHTML = corehours;
     autoclickerActive = true;
+    document.getElementById("auto").disabled = true; // Disable the button
+    document.getElementById("auto").innerHTML = "Copilot Active";
+    document.getElementById("auto").style.backgroundColor = "red"; // Change button color
+    document.getElementById("auto").style.color = "white"; // Change text color
+    document.getElementById("auto").style.border = "2px solid white"; // Change border color
+    document.getElementById("auto").style.cursor = "not-allowed"; // Change cursor style
+    document.getElementById("auto").style.transition = "background-color 0.3s, color 0.3s, border 0.3s, cursor 0.3s"; // Add transition effect
+    document.getElementById("auto").style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.5)"; // Add shadow effect
+    document.getElementById("auto").style.fontSize = "20px"; // Change font size
+    
 
     const clickInterval = setInterval(() => {
       button.click();
@@ -94,6 +104,15 @@ function autoclicker(){
     setTimeout(() => {
       clearInterval(clickInterval);
       autoclickerActive = false;
+      document.getElementById("auto").disabled = false; // Re-enable the button
+      document.getElementById("auto").innerHTML = "Copilot Subscription";
+      document.getElementById("auto").style.backgroundColor = ""; // Reset button color
+      document.getElementById("auto").style.color = ""; // Reset text color
+      document.getElementById("auto").style.border = ""; // Reset border color
+      document.getElementById("auto").style.cursor = ""; // Reset cursor style
+      document.getElementById("auto").style.transition = ""; // Reset transition effect
+      document.getElementById("auto").style.boxShadow = ""; // Reset shadow effect
+      document.getElementById("auto").style.fontSize = ""; // Reset font size
     }, duration);
   } else if (corehours < 1) {
     alert("You don't have enough corehours to activate the autoclicker");
