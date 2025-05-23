@@ -87,7 +87,7 @@ function autoclicker(){
     document.getElementById("cash").innerHTML = corehours;
     autoclickerActive = true;
     document.getElementById("auto").disabled = true; // Disable the button
-    document.getElementById("auto").innerHTML = "Copilot Active";
+    document.getElementById("auto").innerHTML = "Copilot Active 🚀";
     document.getElementById("auto").style.backgroundColor = "red"; // Change button color
     document.getElementById("auto").style.color = "white"; // Change text color
     document.getElementById("auto").style.border = "2px solid white"; // Change border color
@@ -95,7 +95,21 @@ function autoclicker(){
     document.getElementById("auto").style.transition = "background-color 0.3s, color 0.3s, border 0.3s, cursor 0.3s"; // Add transition effect
     document.getElementById("auto").style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.5)"; // Add shadow effect
     document.getElementById("auto").style.fontSize = "20px"; // Change font size
-    
+    // Fallback: force style with setAttribute and !important
+    const autoBtn = document.getElementById("auto");
+    autoBtn.disabled = true;
+    autoBtn.innerHTML = "Copilot Active 🚀";
+    autoBtn.style.backgroundColor = "red";
+    autoBtn.style.color = "white";
+    autoBtn.style.border = "2px solid white";
+    autoBtn.style.cursor = "not-allowed";
+    autoBtn.style.transition = "background-color 0.3s, color 0.3s, border 0.3s, cursor 0.3s";
+    autoBtn.style.boxShadow = "0 0 10px rgba(255, 0, 0, 0.5)";
+    autoBtn.style.fontSize = "20px";
+    // Force style with setAttribute and !important
+    autoBtn.setAttribute("style",
+      "background-color: red !important; color: white !important; border: 2px solid white !important; cursor: not-allowed !important; transition: background-color 0.3s, color 0.3s, border 0.3s, cursor 0.3s !important; box-shadow: 0 0 10px rgba(255,0,0,0.5) !important; font-size: 20px !important;");
+
 
     const clickInterval = setInterval(() => {
       button.click();
@@ -104,15 +118,10 @@ function autoclicker(){
     setTimeout(() => {
       clearInterval(clickInterval);
       autoclickerActive = false;
-      document.getElementById("auto").disabled = false; // Re-enable the button
-      document.getElementById("auto").innerHTML = "Copilot Subscription";
-      document.getElementById("auto").style.backgroundColor = ""; // Reset button color
-      document.getElementById("auto").style.color = ""; // Reset text color
-      document.getElementById("auto").style.border = ""; // Reset border color
-      document.getElementById("auto").style.cursor = ""; // Reset cursor style
-      document.getElementById("auto").style.transition = ""; // Reset transition effect
-      document.getElementById("auto").style.boxShadow = ""; // Reset shadow effect
-      document.getElementById("auto").style.fontSize = ""; // Reset font size
+      autoBtn.disabled = false;
+      autoBtn.innerHTML = "Copilot Subscription";
+      // Reset styles
+      autoBtn.setAttribute("style", "");
     }, duration);
   } else if (corehours < 1) {
     alert("You don't have enough corehours to activate the autoclicker");
